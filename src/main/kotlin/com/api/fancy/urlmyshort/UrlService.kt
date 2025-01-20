@@ -9,4 +9,5 @@ class UrlService(private val urlRepository: UrlRepository) {
     fun save(url: Url): Flux<Url> = urlRepository.save(url)
     fun findAll(): Flux<Url> = urlRepository.findAll()
     fun findById(id: String): Mono<Url> = urlRepository.findById(id)
+    fun findByShortUrl(shortenedUrl: String): Mono<Url> = urlRepository.findByShortUrl(shortenedUrl)
 }

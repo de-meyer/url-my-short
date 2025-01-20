@@ -9,4 +9,5 @@ import reactor.core.publisher.Mono
 interface UrlRepository: ReactiveMongoRepository<Url, Long > {
     fun save(url: Url): Flux<Url>
     fun findById(id: String): Mono<Url>
+    fun findByShortUrl(shortUrl: String): Mono<Url>
 }
