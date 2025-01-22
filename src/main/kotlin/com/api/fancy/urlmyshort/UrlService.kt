@@ -6,7 +6,18 @@ import reactor.core.publisher.Mono
 
 @Service
 class UrlService(private val urlRepository: UrlRepository) {
-    fun save(url: Url): Flux<Url> = urlRepository.save(url)
+    fun save(url: Url): Mono<Url> {
+        val generateShortString = url.originalUrl.trim()
+            .replace("https://","")
+            .replace("http://","")
+            .replace("www.","")
+            .substring(0,3)
+        return urlRepository.save(url.copy(
+            id = url.id,
+            originalUrl = url.originalUrl,
+            shortUrl = "$generateShortString.short-url"
+        ))
+    }
     fun findAll(): Flux<Url> = urlRepository.findAll()
     fun findById(id: String): Mono<Url> = urlRepository.findById(id)
     fun findByShortUrl(shortenedUrl: String): Mono<Url> = urlRepository.findByShortUrl(shortenedUrl)
