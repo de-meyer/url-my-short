@@ -7,5 +7,6 @@ data class Url (
     @Id
     val id: String? = null,
     val originalUrl: String,
-    val shortUrl: String? = null
+    val shortUrl: String? = null,
+    val accessCount: Int = 0
 )

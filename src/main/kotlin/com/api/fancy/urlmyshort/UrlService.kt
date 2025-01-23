@@ -15,7 +15,8 @@ class UrlService(private val urlRepository: UrlRepository) {
         return urlRepository.save(url.copy(
             id = url.id,
             originalUrl = url.originalUrl,
-            shortUrl = "$generateShortString.short-url"
+            shortUrl = "$generateShortString.short-url",
+            accessCount = url.accessCount
         ))
     }
     fun findAll(): Flux<Url> = urlRepository.findAll()
