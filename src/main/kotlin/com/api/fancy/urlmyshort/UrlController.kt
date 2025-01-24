@@ -16,6 +16,9 @@ class UrlController(private val urlService: UrlService) {
     @GetMapping("/find/{id}")
     fun getUrlById(@PathVariable id: String): Mono<Url> = urlService.findById(id)
 
+    @GetMapping("/find/{shortenedUrl}/stats")
+    fun getUrlStatsByShortenedUrl(@PathVariable shortenedUrl: String): Mono<Url> = urlService.getStatsByShortUrl(shortenedUrl)
+
     @GetMapping("/find/shortUrl/" +
             "{shortenedUrl}")
     fun getUrlByShortenedUrl(@PathVariable shortenedUrl: String): Mono<Url> = urlService.findByShortUrl(shortenedUrl)
